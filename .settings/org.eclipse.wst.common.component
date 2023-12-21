@@ -2,6 +2,7 @@
     <wb-module deploy-name="Parking Lot TDD Problem">
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
         <property name="context-root" value="Parking_Lot_TDD_Problem"/>
         <property name="java-output-path" value="/Parking Lot TDD Problem/build/classes"/>
     </wb-module>
