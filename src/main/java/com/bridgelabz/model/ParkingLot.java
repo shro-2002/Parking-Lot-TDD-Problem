@@ -32,6 +32,7 @@ public class ParkingLot {
 	private List<ParkingObservers> observers = new ArrayList<>();
 	int capacity;
 
+
 	/*
 	 * @Description - Constructor to initialize the capacity of the parking lot
 	 * 
@@ -68,7 +69,7 @@ public class ParkingLot {
 		} else {
 
 			System.out.println("Parking lot is full. Cannot park " + car.getLicensePlate() + ".");
-			notifyObservers();
+			notifyObservers(isFull());
 		}
 	}
 
@@ -86,6 +87,7 @@ public class ParkingLot {
 			if (car.getLicensePlate().equals(licensePlate)) {
 				iterator.remove();
 				System.out.println(car.getLicensePlate() + " has been unparked.");
+				notifyObservers(isFull());
 				return;
 			}
 		}
@@ -121,9 +123,10 @@ public class ParkingLot {
 	 * 
 	 * @return - none
 	 */
-	public void notifyObservers() {
+	public void notifyObservers(boolean isFull) {
 		for (ParkingObservers ob : observers)
-			ob.update();
+		
+			ob.update(isFull);
 	}
 
 	/*

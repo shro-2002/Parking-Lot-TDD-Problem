@@ -30,7 +30,6 @@ class ParkingLostTest {
 	Car car1;
 	Car car2;
 
-
 	/*
 	 * @Description - sets up the objects for testing
 	 * 
@@ -43,8 +42,8 @@ class ParkingLostTest {
 		parkingLot = new ParkingLot(3);// Create a parking lot with capacity 3
 		manager = new ParkingManager();// Create a parking manager
 		airportSecurity = new AirportSecurity();
-        parkingLot.addObservers(manager);// Add the manager to the list of observers
-        parkingLot.addObservers(airportSecurity);// Add the airport security to the list of observers
+		parkingLot.addObservers(manager);// Add the manager to the list of observers
+		parkingLot.addObservers(airportSecurity);// Add the airport security to the list of observers
 
 		// Create two cars
 		System.out.println();
@@ -109,10 +108,10 @@ class ParkingLostTest {
 		parkingLot.parkCar(car3);
 		parkingLot.parkCar(car4);
 
-		assertEquals("full", manager.getStatus());
-		assertEquals("full", airportSecurity.getStatus());
-		
+		assertEquals("full", manager.update(parkingLot.isFull()));
+		assertEquals("full", airportSecurity.update(parkingLot.isFull()));
+
 		System.out.println();
-		
+
 	}
 }

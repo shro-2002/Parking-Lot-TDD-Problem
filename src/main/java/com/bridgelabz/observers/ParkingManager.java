@@ -17,13 +17,18 @@ public class ParkingManager implements ParkingObservers {
 	 * 
 	 * @return - none
 	 */
-	public void update() {
-		System.out
-				.println("Dear Manager " + "the Parking Space is full. " + "Kindly put out the PARKING LOT FULL Sign ");
-	}
+	public String update(boolean isFull) {
+		if (isFull) {
+			System.out.println(
+					"Dear Manager " + "the Parking Space is full. " + "Kindly put out the PARKING LOT FULL Sign ");
 
-	public String getStatus() {
-		return "full";
+			return "full";
+		} else {
+			System.out.println(
+					"Dear Manager " + "the Parking Space is not full. " + "Kindly put out the PARKING LOT FULL Sign ");
+			return "not full";
+
+		}
 	}
 
 }
