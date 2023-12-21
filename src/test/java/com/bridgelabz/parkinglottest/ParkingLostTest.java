@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import com.bridgelabz.model.Car;
 import com.bridgelabz.model.ParkingLot;
+import com.bridgelabz.observers.AirportSecurity;
 import com.bridgelabz.observers.ParkingManager;
 import com.bridgelabz.observers.ParkingObservers;
 
@@ -25,6 +26,7 @@ import com.bridgelabz.observers.ParkingObservers;
 class ParkingLostTest {
 	ParkingLot parkingLot;
 	ParkingObservers manager;
+	ParkingObservers airportSecurity;
 	Car car1;
 	Car car2;
 
@@ -40,7 +42,9 @@ class ParkingLostTest {
 	void setUp() throws Exception {
 		parkingLot = new ParkingLot(3);// Create a parking lot with capacity 3
 		manager = new ParkingManager();// Create a parking manager
-		parkingLot.addObservers(manager);// Add the manager to the list of observers
+		airportSecurity = new AirportSecurity();
+        parkingLot.addObservers(manager);// Add the manager to the list of observers
+        parkingLot.addObservers(airportSecurity);// Add the airport security to the list of observers
 
 		// Create two cars
 		System.out.println();
@@ -106,6 +110,8 @@ class ParkingLostTest {
 		parkingLot.parkCar(car4);
 
 		assertEquals("full", manager.getStatus());
+		assertEquals("full", airportSecurity.getStatus());
+		
 		System.out.println();
 		
 	}
