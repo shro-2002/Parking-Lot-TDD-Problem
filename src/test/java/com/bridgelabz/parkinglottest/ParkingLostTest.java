@@ -116,7 +116,6 @@ class ParkingLostTest {
 
 	}
 
-
 	@Test
 	void testParkCarbyAttendant() {
 		System.out.println("Test Park Car by Attendant");
@@ -129,5 +128,14 @@ class ParkingLostTest {
 
 		assertEquals(3, parkingLot.getParkedCars().size());
 		System.out.println();
+	}
+
+	@Test
+	void testFindCar() {
+		System.out.println("Test Find Car");
+
+		Car foundCar = parkingLot.findCar("MH-12-1234");
+		assertNotNull(foundCar);
+		assertEquals("BMW", foundCar.getBrand());
 	}
 }

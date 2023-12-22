@@ -25,13 +25,11 @@ import com.bridgelabz.observers.ParkingObservers;
  * 
  */
 
-
 public class ParkingLot {
 
 	private List<Car> parkedCars = new ArrayList<>();
 	private List<ParkingObservers> observers = new ArrayList<>();
 	int capacity;
-
 
 	/*
 	 * @Description - Constructor to initialize the capacity of the parking lot
@@ -95,6 +93,23 @@ public class ParkingLot {
 	}
 
 	/*
+	 * @Description - Finds the car with the given license plate
+	 *
+	 * @param - licensePlate - license plate of the car to be found
+	 *
+	 * @return - Car object if found, null otherwise
+	 */
+	public Car findCar(String licensePlate) {
+		for (Car car : parkedCars) {
+			if (car.getLicensePlate().equals(licensePlate)) {
+				System.out.println("Car with license plate " + licensePlate + " found in the parking lot.");
+				return car;
+			}
+		}
+		return null;
+	}
+
+	/*
 	 * @Description - adds observers to the list of observers
 	 * 
 	 * @param - ob - observer to be added
@@ -125,7 +140,7 @@ public class ParkingLot {
 	 */
 	public void notifyObservers(boolean isFull) {
 		for (ParkingObservers ob : observers)
-		
+
 			ob.update(isFull);
 	}
 
