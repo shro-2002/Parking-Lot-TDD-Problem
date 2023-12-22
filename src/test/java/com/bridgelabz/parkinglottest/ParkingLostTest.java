@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.bridgelabz.model.Car;
+import com.bridgelabz.model.ParkingAttendant;
 import com.bridgelabz.model.ParkingLot;
 import com.bridgelabz.observers.AirportSecurity;
 import com.bridgelabz.observers.ParkingManager;
@@ -113,5 +114,20 @@ class ParkingLostTest {
 
 		System.out.println();
 
+	}
+
+
+	@Test
+	void testParkCarbyAttendant() {
+		System.out.println("Test Park Car by Attendant");
+		Car car3 = new Car("MH-12-1236", "Acura TLX Type S PMC Edition", "Gotham Gray");
+		Car car4 = new Car("MH-12-1237", "Bentley’s Mulliner division", "Fine Brodgar Silver");
+		ParkingAttendant attendant = new ParkingAttendant();
+
+		attendant.parkCar(parkingLot, car3);
+		attendant.parkCar(parkingLot, car4);
+
+		assertEquals(3, parkingLot.getParkedCars().size());
+		System.out.println();
 	}
 }
