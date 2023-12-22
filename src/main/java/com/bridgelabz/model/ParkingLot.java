@@ -1,5 +1,7 @@
 package com.bridgelabz.model;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 import java.util.Iterator;
@@ -31,6 +33,7 @@ public class ParkingLot {
 	private List<ParkingObservers> observers = new ArrayList<>();
 	int capacity;
 
+	
 	/*
 	 * @Description - Constructor to initialize the capacity of the parking lot
 	 * 
@@ -61,8 +64,10 @@ public class ParkingLot {
 	 * @return - none
 	 */
 	public void parkCar(Car car) {
+		
 		if (!isFull()) {
 			parkedCars.add(car);
+			car.setParktime(LocalTime.now());
 			System.out.println(car.getLicensePlate() + " has been parked.");
 		} else {
 
@@ -83,6 +88,7 @@ public class ParkingLot {
 		while (iterator.hasNext()) {
 			Car car = iterator.next();
 			if (car.getLicensePlate().equals(licensePlate)) {
+				car.setUnparktime(LocalTime.now());
 				iterator.remove();
 				System.out.println(car.getLicensePlate() + " has been unparked.");
 				notifyObservers(isFull());
@@ -109,6 +115,7 @@ public class ParkingLot {
 		return null;
 	}
 
+	
 	/*
 	 * @Description - adds observers to the list of observers
 	 * 

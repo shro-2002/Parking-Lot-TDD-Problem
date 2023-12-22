@@ -1,19 +1,41 @@
 package com.bridgelabz.model;
 
+
+import java.time.LocalTime;
+
 public class Car {
 
 	private String licensePlate;
 	private String brand;
 	private String color;
+	private LocalTime parktime;
+	private LocalTime unparktime;
 
 	public Car(String licensePlate, String brand, String color) {
 		this.licensePlate = licensePlate;
 		this.brand = brand;
 		this.color = color;
+
 	}
 
 	public String getLicensePlate() {
 		return licensePlate;
+	}
+
+	public LocalTime getParkTime() {
+		return parktime;
+	}
+
+	public LocalTime getUnparkTime() {
+		return unparktime;
+	}
+
+	public void setParktime(LocalTime parktime) {
+		this.parktime = parktime;
+	}
+
+	public void setUnparktime(LocalTime unparktime) {
+		this.unparktime = unparktime;
 	}
 
 	public String getBrand() {

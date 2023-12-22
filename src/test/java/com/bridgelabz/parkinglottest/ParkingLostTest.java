@@ -19,14 +19,11 @@ import com.bridgelabz.observers.ParkingObservers;
  * 				manager - object of ParkingManager class
  * 				car - object of Car class
 
- * @Methods - testParkCars() - tests the parkCar() method
- * 			 testUnparkCars() - tests the unparkCar() method
- * 			 testNotifyObservers() - tests the notifyObservers() method
  * 
  */
 class ParkingLostTest {
 	ParkingLot parkingLot;
-	ParkingObservers manager;
+	ParkingManager manager;
 	ParkingObservers airportSecurity;
 	Car car1;
 	Car car2;
@@ -48,8 +45,8 @@ class ParkingLostTest {
 
 		// Create two cars
 		System.out.println();
-		car1 = new Car("MH-12-1234", "BMW", "White");
-		car2 = new Car("MH-12-1235", "Audi TT", "Goodwood Green Pearl");
+		car1 = new Car("WB-12-1234", "BMW", "White");
+		car2 = new Car("WB-12-1235", "Audi TT", "Goodwood Green Pearl");
 
 		// Park the cars
 		parkingLot.parkCar(car1);
@@ -67,8 +64,8 @@ class ParkingLostTest {
 	@Test
 	void testParkCars() {
 		System.out.println("Test Park Cars");
-		Car car3 = new Car("MH-12-1236", "Acura TLX Type S PMC Edition", "Gotham Gray");
-		Car car4 = new Car("MH-12-1237", "Bentley’s Mulliner division", "Fine Brodgar Silver");
+		Car car3 = new Car("WB-12-1236", "Acura TLX Type S PMC Edition", "Gotham Gray");
+		Car car4 = new Car("WB-12-1237", "Bentley’s Mulliner division", "Fine Brodgar Silver");
 
 		parkingLot.parkCar(car3);
 		parkingLot.parkCar(car4);
@@ -86,7 +83,7 @@ class ParkingLostTest {
 	@Test
 	void testUnparkCars() {
 		System.out.println("Test Unpark Cars");
-		parkingLot.unparkCar("MH-12-1234");
+		parkingLot.unparkCar("WB-12-1234");
 
 		assertFalse(parkingLot.getParkedCars().contains(car1));
 		assertTrue(parkingLot.getParkedCars().contains(car2));
@@ -103,8 +100,8 @@ class ParkingLostTest {
 	@Test
 	void testNotifyObservers() {
 		System.out.println("Test Notify Observers");
-		Car car3 = new Car("MH-12-1236", "Acura TLX Type S PMC Edition", "Gotham Gray");
-		Car car4 = new Car("MH-12-1237", "Bentley’s Mulliner division", "Fine Brodgar Silver");
+		Car car3 = new Car("WB-12-1236", "Acura TLX Type S PMC Edition", "Gotham Gray");
+		Car car4 = new Car("WB-12-1237", "Bentley’s Mulliner division", "Fine Brodgar Silver");
 
 		parkingLot.parkCar(car3);
 		parkingLot.parkCar(car4);
@@ -116,11 +113,18 @@ class ParkingLostTest {
 
 	}
 
+	/*
+	 * @Description - tests the parkCar() method by attendant
+	 * 
+	 * @param - none
+	 * 
+	 * @return - none
+	 */
 	@Test
 	void testParkCarbyAttendant() {
 		System.out.println("Test Park Car by Attendant");
-		Car car3 = new Car("MH-12-1236", "Acura TLX Type S PMC Edition", "Gotham Gray");
-		Car car4 = new Car("MH-12-1237", "Bentley’s Mulliner division", "Fine Brodgar Silver");
+		Car car3 = new Car("WB-12-1236", "Acura TLX Type S PMC Edition", "Gotham Gray");
+		Car car4 = new Car("WB-12-1237", "Bentley’s Mulliner division", "Fine Brodgar Silver");
 		ParkingAttendant attendant = new ParkingAttendant();
 
 		attendant.parkCar(parkingLot, car3);
@@ -130,12 +134,38 @@ class ParkingLostTest {
 		System.out.println();
 	}
 
+	/*
+	 * @Description - tests the findCar() method using license plate
+	 * 
+	 * @param - none
+	 * 
+	 * @return - none
+	 */
 	@Test
 	void testFindCar() {
 		System.out.println("Test Find Car");
 
-		Car foundCar = parkingLot.findCar("MH-12-1234");
+		Car foundCar = parkingLot.findCar("WB-12-1234");
 		assertNotNull(foundCar);
 		assertEquals("BMW", foundCar.getBrand());
+	}
+
+	/*
+	 * @Description - tests the chargeParking() method
+	 * 
+	 * @param - none
+	 * 
+	 * @return - none
+	 */
+	@Test
+	void testChargeParking() {
+		System.out.println("Test Charge Parking");
+
+		parkingLot.parkCar(car2);
+		parkingLot.unparkCar("WB-12-1235");
+
+		assertEquals(20, manager.chargeParking(car2));
+		System.out.println();
+
 	}
 }
