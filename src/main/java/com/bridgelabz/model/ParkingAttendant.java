@@ -4,13 +4,15 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+import com.bridgelabz.enums.Driver;
+
 public class ParkingAttendant {
 
 	List<ParkingLot> parkingLots = new ArrayList<>();
-	
-    public ParkingAttendant(List<ParkingLot> parkingLots) {
-        this.parkingLots = new ArrayList<>(parkingLots);
-    }
+
+	public ParkingAttendant(List<ParkingLot> parkingLots) {
+		this.parkingLots = new ArrayList<>(parkingLots);
+	}
 
 	public ParkingAttendant() {
 		// TODO Auto-generated constructor stub
@@ -29,10 +31,17 @@ public class ParkingAttendant {
 
 	}
 
+	public List<String> getLocationOfParkedWhiteCars() {
+		List<String> locations = new ArrayList<>();
+		for (ParkingLot parkingLot : parkingLots) {
+			locations.addAll(parkingLot.getLocationOfParkedWhiteCars());
+		}
+		return locations;
+	}
+
 	public void directLargeCar(Car car, Driver driver) {
 
-		ParkingLot selectedParkingLot = parkingLots.stream()
-				.max(Comparator.comparingInt(ParkingLot::getFreeSpaces))
+		ParkingLot selectedParkingLot = parkingLots.stream().max(Comparator.comparingInt(ParkingLot::getFreeSpaces))
 				.orElse(null);
 
 		if (selectedParkingLot != null) {
@@ -43,5 +52,7 @@ public class ParkingAttendant {
 		}
 
 	}
+	
+	
 
 }

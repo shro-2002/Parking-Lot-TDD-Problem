@@ -2,6 +2,8 @@ package com.bridgelabz.model;
 
 import java.time.LocalTime;
 
+import com.bridgelabz.enums.CarType;
+
 public class Car {
 
 	private String licensePlate;

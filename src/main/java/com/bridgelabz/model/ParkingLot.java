@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.bridgelabz.enums.Driver;
 import com.bridgelabz.observers.ParkingObservers;
 
 /*
@@ -37,6 +38,14 @@ public class ParkingLot {
 		this.capacity = capacity;
 	}
 
+	public int getCapacity() {
+		return capacity;
+	}
+
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
+	}
+
 	/*
 	 * @Description - checks if the parking lot is full
 	 * 
@@ -60,13 +69,12 @@ public class ParkingLot {
 		if (!isFull()) {
 			car.setParktime(LocalTime.now());
 			if (driver.equals(Driver.Handicapped)) {
-				if (parkedCars.size()!=0) {
+				if (parkedCars.size() != 0) {
 					Car car_zero = parkedCars.get(0);
 					parkedCars.remove(0);
 					parkedCars.add(0, car);
 					parkedCars.add(car_zero);
-				}
-				else
+				} else
 					parkedCars.add(car);
 				System.out.println(car.getLicensePlate() + " has been parked.");
 				notifyObservers(isFull());
@@ -119,6 +127,16 @@ public class ParkingLot {
 		return null;
 	}
 
+	public List<String> getLocationOfParkedWhiteCars() {
+		List<String> locations = new ArrayList<>();
+		for (Car car : parkedCars) {
+			if (car.getColor().equalsIgnoreCase("White")) {
+				locations.add("Parking Lot " + hashCode());
+			}
+		}
+		return locations;
+	}
+
 	/*
 	 * @Description - adds observers to the list of observers
 	 * 
@@ -165,16 +183,17 @@ public class ParkingLot {
 		return parkedCars;
 	}
 
-    /*
-     * @Description - Returns the number of free spaces in the parking lot.
-     * 
-     * @param - none
-     * 
-     * @return - the number of free spaces
-     */
-    public int getFreeSpaces() {
-        return capacity - parkedCars.size();
-    }
+	/*
+	 * @Description - Returns the number of free spaces in the parking lot.
+	 * 
+	 * @param - none
+	 * 
+	 * @return - the number of free spaces
+	 */
+	public int getFreeSpaces() {
+		return capacity - parkedCars.size();
+	}
+
 	/*
 	 * @Description - prints the list of parked cars
 	 * 
