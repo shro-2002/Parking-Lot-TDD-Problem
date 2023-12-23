@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.bridgelabz.model.Car;
+import com.bridgelabz.model.Driver;
 import com.bridgelabz.model.ParkingAttendant;
 import com.bridgelabz.model.ParkingLot;
 import com.bridgelabz.observers.AirportSecurity;
@@ -49,8 +50,8 @@ class ParkingLostTest {
 		car2 = new Car("WB-12-1235", "Audi TT", "Goodwood Green Pearl");
 
 		// Park the cars
-		parkingLot.parkCar(car1);
-		parkingLot.parkCar(car2);
+		parkingLot.parkCar(car1,Driver.Handicapped);
+		parkingLot.parkCar(car2,Driver.Non_HandiCapped);
 
 	}
 
@@ -67,8 +68,8 @@ class ParkingLostTest {
 		Car car3 = new Car("WB-12-1236", "Acura TLX Type S PMC Edition", "Gotham Gray");
 		Car car4 = new Car("WB-12-1237", "Bentley’s Mulliner division", "Fine Brodgar Silver");
 
-		parkingLot.parkCar(car3);
-		parkingLot.parkCar(car4);
+		parkingLot.parkCar(car3,Driver.Handicapped);
+		parkingLot.parkCar(car4,Driver.Non_HandiCapped);
 		assertEquals(3, parkingLot.getParkedCars().size());
 		System.out.println();
 	}
@@ -103,8 +104,8 @@ class ParkingLostTest {
 		Car car3 = new Car("WB-12-1236", "Acura TLX Type S PMC Edition", "Gotham Gray");
 		Car car4 = new Car("WB-12-1237", "Bentley’s Mulliner division", "Fine Brodgar Silver");
 
-		parkingLot.parkCar(car3);
-		parkingLot.parkCar(car4);
+		parkingLot.parkCar(car3,Driver.Handicapped);
+		parkingLot.parkCar(car4, Driver.Non_HandiCapped);
 
 		assertEquals("full", manager.update(parkingLot.isFull()));
 		assertEquals("full", airportSecurity.update(parkingLot.isFull()));
@@ -127,8 +128,8 @@ class ParkingLostTest {
 		Car car4 = new Car("WB-12-1237", "Bentley’s Mulliner division", "Fine Brodgar Silver");
 		ParkingAttendant attendant = new ParkingAttendant();
 
-		attendant.parkCar(parkingLot, car3);
-		attendant.parkCar(parkingLot, car4);
+		attendant.parkCar(parkingLot, car3,Driver.Handicapped);
+		attendant.parkCar(parkingLot, car4, Driver.Non_HandiCapped);
 
 		assertEquals(3, parkingLot.getParkedCars().size());
 		System.out.println();
@@ -161,7 +162,7 @@ class ParkingLostTest {
 	void testChargeParking() {
 		System.out.println("Test Charge Parking");
 
-		parkingLot.parkCar(car2);
+		parkingLot.parkCar(car2, Driver.Non_HandiCapped);
 		parkingLot.unparkCar("WB-12-1235");
 
 		assertEquals(20, manager.chargeParking(car2));

@@ -9,9 +9,9 @@ public class ParkingAttendant {
 	 * 
 	 * @return - none
 	 */
-	public void parkCar(ParkingLot parklot, Car car) {
+	public void parkCar(ParkingLot parklot, Car car, Driver driver) {
 
-		parklot.parkCar(car);
+		parklot.parkCar(car,driver);
 
 	}
 

@@ -1,6 +1,5 @@
 package com.bridgelabz.model;
 
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
@@ -16,14 +15,8 @@ import com.bridgelabz.observers.ParkingObservers;
  * 				parkedCars - list of cars parked in the parking lot
  * 				observers - list of observers
  * 
- * @Methods - isFull() - checks if the parking lot is full
- * 			 parkCar() - parks the car in the parking lot
- * 			 unparkCar() - unparks the car from the parking lot
- * 			 addObservers() - adds observers to the list of observers
- * 			 removeObservers() - removes observers from the list of observers
- * 			 notifyObservers() - notifies observers about parking lot status
- * 			 getParkedCars() - returns the list of parked cars
- * 			 printParkedCars() - prints the list of parked cars
+ * @Methods - isFull() ,parkCar(),unparkCar(),addObservers(),removeObservers(),notifyObservers(),getParkedCars()
+printParkedCars()
  * 
  */
 
@@ -33,7 +26,6 @@ public class ParkingLot {
 	private List<ParkingObservers> observers = new ArrayList<>();
 	int capacity;
 
-	
 	/*
 	 * @Description - Constructor to initialize the capacity of the parking lot
 	 * 
@@ -63,16 +55,28 @@ public class ParkingLot {
 	 * 
 	 * @return - none
 	 */
-	public void parkCar(Car car) {
-		
-		if (!isFull()) {
-			parkedCars.add(car);
-			car.setParktime(LocalTime.now());
-			System.out.println(car.getLicensePlate() + " has been parked.");
-		} else {
+	public void parkCar(Car car, Driver driver) {
 
-			System.out.println("Parking lot is full. Cannot park " + car.getLicensePlate() + ".");
-			notifyObservers(isFull());
+		if (!isFull()) {
+			car.setParktime(LocalTime.now());
+			if (driver.equals(Driver.Handicapped)) {
+				if (parkedCars.size()!=0) {
+					Car car_zero = parkedCars.get(0);
+					parkedCars.remove(0);
+					parkedCars.add(0, car);
+					parkedCars.add(car_zero);
+				}
+				else
+					parkedCars.add(car);
+				System.out.println(car.getLicensePlate() + " has been parked.");
+				notifyObservers(isFull());
+			} else {
+				parkedCars.add(car);
+				System.out.println(car.getLicensePlate() + " has been parked.");
+				notifyObservers(isFull());
+			}
+		} else {
+			System.out.println("Parking lot is full.");
 		}
 	}
 
@@ -115,7 +119,6 @@ public class ParkingLot {
 		return null;
 	}
 
-	
 	/*
 	 * @Description - adds observers to the list of observers
 	 * 
