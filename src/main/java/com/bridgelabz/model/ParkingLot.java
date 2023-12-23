@@ -11,11 +11,9 @@ import com.bridgelabz.observers.ParkingObservers;
 
 /*
  * @Description - ParkingLot class to park and unpark cars and notify observers about parking lot status
- * 
  * @Properties - capacity - capacity of the parking lot
  * 				parkedCars - list of cars parked in the parking lot
  * 				observers - list of observers
- * 
  * @Methods - isFull() ,parkCar(),unparkCar(),addObservers(),removeObservers(),notifyObservers(),getParkedCars()
 printParkedCars()
  * 
@@ -127,10 +125,37 @@ public class ParkingLot {
 		return null;
 	}
 
-	public List<String> getLocationOfParkedWhiteCars() {
+	/*
+	 * @Description - Finds the location of the car with the color
+	 * 
+	 * @param - color - color of the car to be found
+	 * 
+	 * @return - location of the car if found, null otherwise
+	 */
+	public List<String> getLocationOfParkedbyColor(String color) {
 		List<String> locations = new ArrayList<>();
 		for (Car car : parkedCars) {
-			if (car.getColor().equalsIgnoreCase("White")) {
+			if (car.getColor().equalsIgnoreCase(color)) {
+				locations.add("Parking Lot " + hashCode());
+				System.out.println(
+						"Car with color " + color + "and location " + hashCode() + " found in the parking lot.");
+			}
+		}
+		return locations;
+	}
+
+	/*
+	 * @Description - Finds the location of the car with the color and brand
+	 *
+	 * @param - color - color of the car to be found brand - brand of the car to be
+	 * found
+	 *
+	 * @return - location of the car if found, null otherwise
+	 */
+	public List<String> getLocationOfParkedbyColorAndBrand(String color, String brand) {
+		List<String> locations = new ArrayList<>();
+		for (Car car : parkedCars) {
+			if (car.getColor().equalsIgnoreCase(color) && car.getBrand().equalsIgnoreCase(brand)) {
 				locations.add("Parking Lot " + hashCode());
 			}
 		}

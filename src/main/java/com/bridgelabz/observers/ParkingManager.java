@@ -43,7 +43,7 @@ public class ParkingManager implements ParkingObservers {
 	public double chargeParking(Car car) {
 		double charge = 0;
 		int time = car.getUnparkTime().getHour() - (car.getParkTime().getHour());
-		System.out.println("Parking Time: " + car.getParkTime()+ " " + car.getUnparkTime());
+		System.out.println("Parking Time: " + car.getParkTime() + " " + car.getUnparkTime());
 		if (time <= 1) {
 			charge = 20;
 		} else {

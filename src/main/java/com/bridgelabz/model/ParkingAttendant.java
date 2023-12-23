@@ -9,9 +9,11 @@ import com.bridgelabz.enums.Driver;
 public class ParkingAttendant {
 
 	List<ParkingLot> parkingLots = new ArrayList<>();
+	public String parkingAttendantName;
 
-	public ParkingAttendant(List<ParkingLot> parkingLots) {
+	public ParkingAttendant(List<ParkingLot> parkingLots, String parkingAttendantName) {
 		this.parkingLots = new ArrayList<>(parkingLots);
+		this.parkingAttendantName = parkingAttendantName;
 	}
 
 	public ParkingAttendant() {
@@ -31,10 +33,18 @@ public class ParkingAttendant {
 
 	}
 
-	public List<String> getLocationOfParkedWhiteCars() {
+	public List<String> getLocationOfParkedCarsbyColor(String color) {
 		List<String> locations = new ArrayList<>();
 		for (ParkingLot parkingLot : parkingLots) {
-			locations.addAll(parkingLot.getLocationOfParkedWhiteCars());
+			locations.addAll(parkingLot.getLocationOfParkedbyColor(color));
+		}
+		return locations;
+	}
+
+	public List<String> getLocationOfParkedCarsbyBrandaColor(String color,String brand) {
+		List<String> locations = new ArrayList<>();
+		for (ParkingLot parkingLot : parkingLots) {
+			locations.addAll(parkingLot.getLocationOfParkedbyColorAndBrand(color,brand) );
 		}
 		return locations;
 	}
