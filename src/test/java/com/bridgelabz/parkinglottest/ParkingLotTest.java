@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.bridgelabz.model.Car;
+import com.bridgelabz.model.CarType;
 import com.bridgelabz.model.Driver;
 import com.bridgelabz.model.ParkingAttendant;
 import com.bridgelabz.model.ParkingLot;
@@ -22,7 +23,7 @@ import com.bridgelabz.observers.ParkingObservers;
 
  * 
  */
-class ParkingLostTest {
+class ParkingLotTest {
 	ParkingLot parkingLot;
 	ParkingManager manager;
 	ParkingObservers airportSecurity;
@@ -46,8 +47,8 @@ class ParkingLostTest {
 
 		// Create two cars
 		System.out.println();
-		car1 = new Car("WB-12-1234", "BMW", "White");
-		car2 = new Car("WB-12-1235", "Audi TT", "Goodwood Green Pearl");
+		car1 = new Car("WB-12-1234", "BMW", "White", CarType.SMALL);
+		car2 = new Car("WB-12-1235", "Audi TT", "Goodwood Green Pearl",CarType.SMALL);
 
 		// Park the cars
 		parkingLot.parkCar(car1,Driver.Handicapped);
@@ -65,8 +66,8 @@ class ParkingLostTest {
 	@Test
 	void testParkCars() {
 		System.out.println("Test Park Cars");
-		Car car3 = new Car("WB-12-1236", "Acura TLX Type S PMC Edition", "Gotham Gray");
-		Car car4 = new Car("WB-12-1237", "Bentley’s Mulliner division", "Fine Brodgar Silver");
+		Car car3 = new Car("WB-12-1236", "Acura TLX Type S PMC Edition", "Gotham Gray",CarType.SMALL);
+		Car car4 = new Car("WB-12-1237", "Bentley’s Mulliner division", "Fine Brodgar Silver",CarType.SMALL);
 
 		parkingLot.parkCar(car3,Driver.Handicapped);
 		parkingLot.parkCar(car4,Driver.Non_HandiCapped);
@@ -101,8 +102,8 @@ class ParkingLostTest {
 	@Test
 	void testNotifyObservers() {
 		System.out.println("Test Notify Observers");
-		Car car3 = new Car("WB-12-1236", "Acura TLX Type S PMC Edition", "Gotham Gray");
-		Car car4 = new Car("WB-12-1237", "Bentley’s Mulliner division", "Fine Brodgar Silver");
+		Car car3 = new Car("WB-12-1236", "Acura TLX Type S PMC Edition", "Gotham Gray",CarType.SMALL);
+		Car car4 = new Car("WB-12-1237", "Bentley’s Mulliner division", "Fine Brodgar Silver",CarType.SMALL);
 
 		parkingLot.parkCar(car3,Driver.Handicapped);
 		parkingLot.parkCar(car4, Driver.Non_HandiCapped);
@@ -124,8 +125,8 @@ class ParkingLostTest {
 	@Test
 	void testParkCarbyAttendant() {
 		System.out.println("Test Park Car by Attendant");
-		Car car3 = new Car("WB-12-1236", "Acura TLX Type S PMC Edition", "Gotham Gray");
-		Car car4 = new Car("WB-12-1237", "Bentley’s Mulliner division", "Fine Brodgar Silver");
+		Car car3 = new Car("WB-12-1236", "Acura TLX Type S PMC Edition", "Gotham Gray", CarType.SMALL);
+		Car car4 = new Car("WB-12-1237", "Bentley’s Mulliner division", "Fine Brodgar Silver", CarType.MEDIUM);
 		ParkingAttendant attendant = new ParkingAttendant();
 
 		attendant.parkCar(parkingLot, car3,Driver.Handicapped);

@@ -1,6 +1,5 @@
 package com.bridgelabz.model;
 
-
 import java.time.LocalTime;
 
 public class Car {
@@ -9,12 +8,15 @@ public class Car {
 	private String brand;
 	private String color;
 	private LocalTime parktime;
-	private LocalTime unparktime;
 
-	public Car(String licensePlate, String brand, String color) {
+	private LocalTime unparktime;
+	private CarType size;
+
+	public Car(String licensePlate, String brand, String color,CarType size ) {
 		this.licensePlate = licensePlate;
 		this.brand = brand;
 		this.color = color;
+		this.size= size;
 
 	}
 
@@ -58,4 +60,11 @@ public class Car {
 		this.color = color;
 	}
 
+	public CarType getSize() {
+		return size;
+	}
+
+	public void setSize(CarType size) {
+		this.size = size;
+	}
 }

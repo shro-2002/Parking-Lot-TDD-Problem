@@ -165,6 +165,16 @@ public class ParkingLot {
 		return parkedCars;
 	}
 
+    /*
+     * @Description - Returns the number of free spaces in the parking lot.
+     * 
+     * @param - none
+     * 
+     * @return - the number of free spaces
+     */
+    public int getFreeSpaces() {
+        return capacity - parkedCars.size();
+    }
 	/*
 	 * @Description - prints the list of parked cars
 	 * 
