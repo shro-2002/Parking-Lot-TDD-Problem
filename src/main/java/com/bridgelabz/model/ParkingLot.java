@@ -138,7 +138,7 @@ public class ParkingLot {
 			if (car.getColor().equalsIgnoreCase(color)) {
 				locations.add("Parking Lot " + hashCode());
 				System.out.println(
-						"Car with color " + color + "and location " + hashCode() + " found in the parking lot.");
+						"Car with color " + color + " and location " + hashCode() + " found in the parking lot.");
 			}
 		}
 		return locations;
@@ -157,6 +157,19 @@ public class ParkingLot {
 		for (Car car : parkedCars) {
 			if (car.getColor().equalsIgnoreCase(color) && car.getBrand().equalsIgnoreCase(brand)) {
 				locations.add("Parking Lot " + hashCode());
+
+				System.out.println("Car with color " + color + " Brand " + brand + " and location " + hashCode()
+						+ " found in the parking lot.");
+			}
+		}
+		return locations;
+	}
+
+	public List<String> getLocationOfParkedCarsByBrand(String brand) {
+		List<String> locations = new ArrayList<>();
+		for (Car car : parkedCars) {
+			if (car.getBrand().equalsIgnoreCase(brand)) {
+				locations.add("Parking Lot " + hashCode() + ", License Plate: " + car.getLicensePlate());
 			}
 		}
 		return locations;

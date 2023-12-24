@@ -24,5 +24,9 @@ public class PoliceDepartment {
 		return result;
 
 	}
+	
+    public List<String> getLocationOfParkedBrandCars(String brand) {
+        return parkingAttendant.getLocationOfParkedCarsByBrand(brand);
+    }
 
 }
