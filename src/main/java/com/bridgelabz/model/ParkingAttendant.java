@@ -1,5 +1,7 @@
 package com.bridgelabz.model;
 
+import java.time.Duration;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -69,6 +71,22 @@ public class ParkingAttendant {
 			System.out.println("No suitable parking lot found for the large car.");
 		}
 
+	}
+
+	public List<String> carsParkedLast30Minutes() {
+		List<String> carsParkedLast30Minutes = new ArrayList<>();
+		LocalTime currentTime = LocalTime.now();
+
+		for (ParkingLot parkingLot : parkingLots) {
+			for (Car car : parkingLot.getParkedCars()) {
+				if (Duration.between(car.getParkTime(), currentTime).toMinutes() <= 30) {
+					carsParkedLast30Minutes
+							.add("License Plate: " + car.getLicensePlate() + ", Parking Lot: " + parkingLot.hashCode());
+				}
+			}
+		}
+
+		return carsParkedLast30Minutes;
 	}
 
 }
