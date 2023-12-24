@@ -73,8 +73,8 @@ class ParkingAttendantTest {
 
 		List<String> locations = policeDepartment.getLocationOfParkedColorCars("White");
 
-		for (String location : locations)
-			assertNotNull(location);
+		assertTrue(locations.contains("Parking Lot " + parkingLot1.hashCode()));
+		assertTrue(locations.contains("Parking Lot " + parkingLot2.hashCode()));
 
 		assertEquals(2, locations.size());
 
@@ -99,11 +99,33 @@ class ParkingAttendantTest {
 
 		List<String> locations = policeDepartment.getLocationOfParkedColorAndBrandCars("Blue", "Toyota");
 
-		for (String location : locations)
-			assertNotNull(location);
+		assertTrue(
+				locations.contains(parkingAttendant.parkingAttendantName + " Parking Lot " + parkingLot1.hashCode()));
+		assertTrue(
+				locations.contains(parkingAttendant.parkingAttendantName + " Parking Lot " + parkingLot2.hashCode()));
 
 		assertEquals(2, locations.size());
 
 		System.out.println();
+	}
+
+	@Test
+	void testGetLocationOfParkedBMW() {
+		System.out.println("Test Get Location of Parked BMW Cars");
+
+		Car bmwCar1 = new Car("WB-12-1234", "BMW", "White", CarType.SMALL);
+		Car bmwCar2 = new Car("WB-12-5678", "BMW", "Blue", CarType.MEDIUM);
+
+		parkingLot1.parkCar(bmwCar1, Driver.Handicapped);
+		parkingLot2.parkCar(bmwCar2, Driver.Non_HandiCapped);
+
+		List<String> locations = policeDepartment.getLocationOfParkedBrandCars("BMW");
+
+		assertEquals(2, locations.size());
+		assertTrue(locations
+				.contains("Parking Lot " + parkingLot1.hashCode() + ", License Plate: " + bmwCar1.getLicensePlate()));
+		assertTrue(locations
+				.contains("Parking Lot " + parkingLot2.hashCode() + ", License Plate: " + bmwCar2.getLicensePlate()));
+
 	}
 }
