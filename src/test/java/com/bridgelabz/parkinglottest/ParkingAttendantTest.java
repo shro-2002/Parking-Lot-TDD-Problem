@@ -165,6 +165,13 @@ class ParkingAttendantTest {
 				.contains("License Plate: " + car2.getLicensePlate() + ", Parking Lot: " + parkingLot2.hashCode()));
 	}
 
+	/*
+	 * @Description - tests the cars parked in row B or D method
+	 * 
+	 * @param - none
+	 * 
+	 * @return - none
+	 */
 	@Test
 	void testCarsParkedinRowBorD(){
 		System.out.println("Test Cars Parked in Row B or D");

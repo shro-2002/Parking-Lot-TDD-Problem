@@ -165,6 +165,13 @@ public class ParkingLot {
 		return locations;
 	}
 
+	/*
+	 * @Description - Finds the location of the car with the brand
+	 *
+	 * @param - brand - brand of the car to be found
+	 *
+	 * @return - location of the car if found, null otherwise
+	 */
 	public List<String> getLocationOfParkedCarsByBrand(String brand) {
 		List<String> locations = new ArrayList<>();
 		for (Car car : parkedCars) {

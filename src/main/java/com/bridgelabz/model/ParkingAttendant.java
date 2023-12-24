@@ -9,16 +9,37 @@ import java.util.List;
 import com.bridgelabz.enums.CarType;
 import com.bridgelabz.enums.Driver;
 
+/*
+ * @Description - ParkingAttendant class to park cars and get the location of the parked cars
+ * @Properties - parkingLots - list of parking lots
+ * 				parkingAttendantName - name of the parking attendant
+ */
 public class ParkingAttendant {
 
 	List<ParkingLot> parkingLots = new ArrayList<>();
 	public String parkingAttendantName;
 
+	/*
+	 * @Description - Constructor to initialize the parking lots and parking
+	 * attendant name
+	 * 
+	 * @param - parkingLots - list of parking lots parkingAttendantName - name of
+	 * the parking attendant
+	 * 
+	 * @return - none
+	 */
 	public ParkingAttendant(List<ParkingLot> parkingLots, String parkingAttendantName) {
 		this.parkingLots = new ArrayList<>(parkingLots);
 		this.parkingAttendantName = parkingAttendantName;
 	}
 
+	/*
+	 * @Description - Default Constructor
+	 * 
+	 * @param - none
+	 * 
+	 * @return - none
+	 */
 	public ParkingAttendant() {
 		// TODO Auto-generated constructor stub
 	}
@@ -153,7 +174,8 @@ public class ParkingAttendant {
 
 		for (ParkingLot parkingLot : parkingLots) {
 			for (Car car : parkingLot.getParkedCars()) {
-				if (car.getSize() == CarType.SMALL && (car.getCarRow().charAt(0) == 'B' || car.getCarRow().charAt(0) == 'D')) {
+				if (car.getSize() == CarType.SMALL
+						&& (car.getCarRow().charAt(0) == 'B' || car.getCarRow().charAt(0) == 'D')) {
 					result.add("Parking Lot: " + parkingLot.hashCode() + ", License Plate: " + car.getLicensePlate());
 				}
 			}
