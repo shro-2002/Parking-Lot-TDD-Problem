@@ -46,7 +46,7 @@ class ParkingAttendantTest {
 	@Test
 	void testLargeParkingCar() {
 		System.out.println("Test Direct Large Car");
-		Car largeCar = new Car("WB-12-1238", "Mercedes-Benz GLS", "Black", CarType.LARGE);
+		Car largeCar = new Car("WB-12-1238", "Mercedes-Benz GLS", "Black", CarType.LARGE, "A1");
 
 		parkingAttendant.directLargeCar(largeCar, Driver.Handicapped);
 
@@ -65,8 +65,8 @@ class ParkingAttendantTest {
 	@Test
 	void testGetLocationOfParkedWhiteCars() {
 		System.out.println("Test Get Location of Parked White Cars");
-		Car whiteCar1 = new Car("WB-12-1234", "Toyota", "White", CarType.SMALL);
-		Car whiteCar2 = new Car("WB-12-5678", "Honda", "White", CarType.LARGE);
+		Car whiteCar1 = new Car("WB-12-1234", "Toyota", "White", CarType.SMALL, "A1");
+		Car whiteCar2 = new Car("WB-12-5678", "Honda", "White", CarType.LARGE, "A2");
 
 		parkingLot1.parkCar(whiteCar1, Driver.Handicapped);
 		parkingLot2.parkCar(whiteCar2, Driver.Non_HandiCapped);
@@ -91,8 +91,8 @@ class ParkingAttendantTest {
 	@Test
 	void testGetLocationOfParkedBlueToyotaCars() {
 		System.out.println("Test Get Location of Parked Blue Toyota Cars");
-		Car blueToyotaCar1 = new Car("WB-12-1234", "Toyota", "Blue", CarType.SMALL);
-		Car blueToyotaCar2 = new Car("WB-12-5678", "Toyota", "Blue", CarType.LARGE);
+		Car blueToyotaCar1 = new Car("WB-12-1234", "Toyota", "Blue", CarType.SMALL, "A1");
+		Car blueToyotaCar2 = new Car("WB-12-5678", "Toyota", "Blue", CarType.LARGE, "A2");
 
 		parkingLot1.parkCar(blueToyotaCar1, Driver.Handicapped);
 		parkingLot2.parkCar(blueToyotaCar2, Driver.Non_HandiCapped);
@@ -109,12 +109,19 @@ class ParkingAttendantTest {
 		System.out.println();
 	}
 
+	/*
+	 * @Description - tests the location of parked cars by brand method
+	 * 
+	 * @param - none
+	 * 
+	 * @return - none
+	 */
 	@Test
 	void testGetLocationOfParkedBMW() {
 		System.out.println("Test Get Location of Parked BMW Cars");
 
-		Car bmwCar1 = new Car("WB-12-1234", "BMW", "White", CarType.SMALL);
-		Car bmwCar2 = new Car("WB-12-5678", "BMW", "Blue", CarType.MEDIUM);
+		Car bmwCar1 = new Car("WB-12-1234", "BMW", "White", CarType.SMALL, "A1");
+		Car bmwCar2 = new Car("WB-12-5678", "BMW", "Blue", CarType.MEDIUM, "A2");
 
 		parkingLot1.parkCar(bmwCar1, Driver.Handicapped);
 		parkingLot2.parkCar(bmwCar2, Driver.Non_HandiCapped);
@@ -129,18 +136,25 @@ class ParkingAttendantTest {
 
 	}
 
+	/*
+	 * @Description - tests the cars parked in the last 30 minutes method
+	 * 
+	 * @param - none
+	 * 
+	 * @return - none
+	 */
 	@Test
 	void testGetCarsParkedLast30Minutes() {
 		System.out.println("Test Get Cars Parked in the Last 30 Minutes");
 
-		Car car1 = new Car("WB-12-1234", "Toyota", "White", CarType.SMALL);
-		Car car2 = new Car("WB-12-5678", "Honda", "Blue", CarType.MEDIUM);
+		Car car1 = new Car("WB-12-1234", "Toyota", "White", CarType.SMALL, "A1");
+		Car car2 = new Car("WB-12-5678", "Honda", "Blue", CarType.MEDIUM, "A2");
 	
 		parkingLot1.parkCar(car1, Driver.Handicapped);
 		parkingLot2.parkCar(car2, Driver.Non_HandiCapped);
 	
 
-		waitMinutes(30);
+		parkingAttendant.waitMinutes(30);
 
 		List<String> locations = policeDepartment.getCarsParkedLast30Minutes();
 
@@ -151,11 +165,25 @@ class ParkingAttendantTest {
 				.contains("License Plate: " + car2.getLicensePlate() + ", Parking Lot: " + parkingLot2.hashCode()));
 	}
 
-	private void waitMinutes(int minutes) {
-		try {
-			Thread.sleep(minutes * 60 * 1000);
-		} catch (InterruptedException e) {
-			Thread.currentThread().interrupt();
-		}
+	@Test
+	void testCarsParkedinRowBorD(){
+		System.out.println("Test Cars Parked in Row B or D");
+		Car car1 = new Car("WB-12-1234", "Toyota", "White", CarType.SMALL, "B1");
+		Car car2 = new Car("WB-12-5678", "Honda", "Blue", CarType.SMALL, "D2");
+
+
+		parkingLot1.parkCar(car1, Driver.Handicapped);
+		parkingLot2.parkCar(car2, Driver.Handicapped);
+
+
+		List<String> locations = policeDepartment.smallHandicapCarsOnRowsBorD();
+
+		assertEquals(2, locations.size());
+
+		assertTrue(locations.contains("Parking Lot: " + parkingLot1.hashCode() + ", License Plate: " + car1.getLicensePlate()));
+		assertTrue(locations.contains("Parking Lot: " + parkingLot2.hashCode() + ", License Plate: " + car2.getLicensePlate()));
+
+		
 	}
+
 }

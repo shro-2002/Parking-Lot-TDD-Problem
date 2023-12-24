@@ -43,8 +43,8 @@ class ParkingLotTest {
 
 		// Create two cars
 		System.out.println();
-		car1 = new Car("WB-12-1234", "BMW", "White", CarType.SMALL);
-		car2 = new Car("WB-12-1235", "Audi TT", "Goodwood Green Pearl", CarType.SMALL);
+		car1 = new Car("WB-12-1234", "BMW", "White", CarType.SMALL, "A1");
+		car2 = new Car("WB-12-1235", "Audi TT", "Goodwood Green Pearl", CarType.SMALL, "A2");
 
 		// Park the cars
 		parkingLot.parkCar(car1, Driver.Handicapped);
@@ -62,8 +62,8 @@ class ParkingLotTest {
 	@Test
 	void testParkCars() {
 		System.out.println("Test Park Cars");
-		Car car3 = new Car("WB-12-1236", "Acura TLX Type S PMC Edition", "Gotham Gray", CarType.SMALL);
-		Car car4 = new Car("WB-12-1237", "Bentley’s Mulliner division", "Fine Brodgar Silver", CarType.SMALL);
+		Car car3 = new Car("WB-12-1236", "Acura TLX Type S PMC Edition", "Gotham Gray", CarType.SMALL, "A3");
+		Car car4 = new Car("WB-12-1237", "Bentley’s Mulliner division", "Fine Brodgar Silver", CarType.SMALL, "A4");
 
 		parkingLot.parkCar(car3, Driver.Handicapped);
 		parkingLot.parkCar(car4, Driver.Non_HandiCapped);
@@ -104,8 +104,8 @@ class ParkingLotTest {
 		parkingLot.addObservers(airportSecurity);
 		
 		System.out.println("Test Notify Observers");
-		Car car3 = new Car("WB-12-1236", "Acura TLX Type S PMC Edition", "Gotham Gray", CarType.SMALL);
-		Car car4 = new Car("WB-12-1237", "Bentley’s Mulliner division", "Fine Brodgar Silver", CarType.SMALL);
+		Car car3 = new Car("WB-12-1236", "Acura TLX Type S PMC Edition", "Gotham Gray", CarType.SMALL, "A3");
+		Car car4 = new Car("WB-12-1237", "Bentley’s Mulliner division", "Fine Brodgar Silver", CarType.SMALL, "A4");
 
 		parkingLot.parkCar(car3, Driver.Handicapped);
 		parkingLot.parkCar(car4, Driver.Non_HandiCapped);
@@ -127,8 +127,8 @@ class ParkingLotTest {
 	@Test
 	void testParkCarbyAttendant() {
 		System.out.println("Test Park Car by Attendant");
-		Car car3 = new Car("WB-12-1236", "Acura TLX Type S PMC Edition", "Gotham Gray", CarType.SMALL);
-		Car car4 = new Car("WB-12-1237", "Bentley’s Mulliner division", "Fine Brodgar Silver", CarType.MEDIUM);
+		Car car3 = new Car("WB-12-1236", "Acura TLX Type S PMC Edition", "Gotham Gray", CarType.SMALL, "A3");
+		Car car4 = new Car("WB-12-1237", "Bentley’s Mulliner division", "Fine Brodgar Silver", CarType.MEDIUM, "A4");
 		ParkingAttendant attendant = new ParkingAttendant();
 
 		attendant.parkCar(parkingLot, car3, Driver.Handicapped);

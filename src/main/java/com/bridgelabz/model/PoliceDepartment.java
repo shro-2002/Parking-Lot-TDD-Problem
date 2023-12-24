@@ -11,12 +11,12 @@ public class PoliceDepartment {
 	}
 
 	public List<String> getLocationOfParkedColorCars(String color) {
-		return parkingAttendant.getLocationOfParkedCarsbyColor(color);
+		return parkingAttendant.locationOfParkedCarsbyColor(color);
 	}
 
 	public List<String> getLocationOfParkedColorAndBrandCars(String color, String brand) {
 		List<String> result = new ArrayList<>();
-		List<String> locations = parkingAttendant.getLocationOfParkedCarsbyBrandaColor(color, brand);
+		List<String> locations = parkingAttendant.locationOfParkedCarsbyBrandaColor(color, brand);
 		String name= parkingAttendant.parkingAttendantName;
 		for (String location : locations) {
 			result.add(name + " " + location);
@@ -26,11 +26,15 @@ public class PoliceDepartment {
 	}
 	
     public List<String> getLocationOfParkedBrandCars(String brand) {
-        return parkingAttendant.getLocationOfParkedCarsByBrand(brand);
+        return parkingAttendant.locationOfParkedCarsByBrand(brand);
     }
     
     public List<String> getCarsParkedLast30Minutes() {
         return parkingAttendant.carsParkedLast30Minutes();
     }
+
+	public List<String> smallHandicapCarsOnRowsBorD(){
+		return parkingAttendant.getSmallHandicapCarsOnRowsBorD();
+	}
 
 }

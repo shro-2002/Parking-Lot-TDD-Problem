@@ -10,16 +10,16 @@ public class Car {
 	private String brand;
 	private String color;
 	private LocalTime parktime;
-
+	private String carRow;
 	private LocalTime unparktime;
 	private CarType size;
 
-	public Car(String licensePlate, String brand, String color,CarType size ) {
+	public Car(String licensePlate, String brand, String color,CarType size ,String carRow) {
 		this.licensePlate = licensePlate;
 		this.brand = brand;
 		this.color = color;
 		this.size= size;
-
+		this.carRow=carRow;
 	}
 
 	public String getLicensePlate() {
@@ -68,5 +68,13 @@ public class Car {
 
 	public void setSize(CarType size) {
 		this.size = size;
+	}
+
+	public String getCarRow() {
+		return carRow;
+	}
+
+	public void setCarRow(String carRow) {
+		this.carRow = carRow;
 	}
 }
